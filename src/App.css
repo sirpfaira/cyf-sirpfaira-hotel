@@ -79,3 +79,21 @@ ul {
 .no-highlight {
   background-color: #00000000;
 }
+.sr-main-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.customer-profile {
+  background-color: aqua;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.user-image {
+  width: 15rem;
+  height: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

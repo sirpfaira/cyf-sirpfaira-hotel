@@ -6,6 +6,8 @@ import SearchResults from './SearchResults.js';
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [searchWord, setSearchWord] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const SearchFunction = (searchVal) => {
     console.info('TO DO!', searchVal);
@@ -16,9 +18,14 @@ const Bookings = () => {
     fetch(`https://cyf-react.glitch.me`)
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false);
         filterData(data);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setLoading(false);
+        setError(true);
+        console.log(error);
+      });
   });
 
   const filterData = (data) => {
@@ -38,7 +45,11 @@ const Bookings = () => {
     <div className='App-content'>
       <div className='container'>
         <Search search={SearchFunction} />
-        <SearchResults results={bookings} />
+        {loading ? (
+          <p>Loading data, please wait.....</p>
+        ) : error ? <p>Error! Data could not be loaded!</p> :(
+          <SearchResults results={bookings} />
+        )}
       </div>
     </div>
   );
