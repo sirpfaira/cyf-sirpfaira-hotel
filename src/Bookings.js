@@ -15,7 +15,7 @@ const Bookings = () => {
   };
 
   useEffect(() => {
-    fetch(`https://cyf-react.glitch.me`)
+    fetch(`https://sirpfaira-hotel-server.glitch.me/bookings`)
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
@@ -47,7 +47,9 @@ const Bookings = () => {
         <Search search={SearchFunction} />
         {loading ? (
           <p>Loading data, please wait.....</p>
-        ) : error ? <p>Error! Data could not be loaded!</p> :(
+        ) : error ? (
+          <p>Error! Data could not be loaded!</p>
+        ) : (
           <SearchResults results={bookings} />
         )}
       </div>
